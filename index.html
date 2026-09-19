@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An interactive CSS editor for exploring responsive Grid and Flexbox layouts in real time.">
+  <meta name="author" content="Damion Wilson for CodeBox LLC">
+  <meta name="theme-color" content="#1e2623">
+  <link rel="canonical" href="https://codeboxllc.net">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://codeboxllc.net">
+  <meta property="og:title" content="Flex / Grid Playground | CodeBox LLC">
+  <meta property="og:description" content="An interactive CSS editor for exploring responsive Grid and Flexbox layouts in real time.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/dwilson-coder/cssflexgrid/refs/heads/main/og.jpg">
+  <meta property="og:image:alt" content="Flex / Grid Playground CSS editor">
+  <meta property="og:site_name" content="CodeBox LLC">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Flex / Grid Playground | CodeBox LLC">
+  <meta name="twitter:description" content="An interactive CSS editor for exploring responsive Grid and Flexbox layouts in real time.">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/dwilson-coder/cssflexgrid/refs/heads/main/og.jpg">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <title>Flex / Grid Playground</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Flex Grid Playground home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>Flex / Grid</span>
+      </a>
+      <div class="topbar-meta">
+        <span>CSS layout study</span>
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Interactive / 01</span>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="playground" aria-labelledby="page-title">
+        <div class="intro">
+          <p class="eyebrow">Layout playground <span>01—02</span></p>
+          <h1 id="page-title">Shape the <em>space.</em></h1>
+          <p class="intro-copy">A small, living study of two ways to arrange the same nine objects. Choose a system, then tune the rhythm.</p>
+        </div>
+
+        <div class="canvas-heading">
+          <div>
+            <span class="section-label">Current composition</span>
+            <h2 id="mode-title">CSS Grid</h2>
+          </div>
+          <span class="item-count" id="item-count">09 objects</span>
+        </div>
+
+        <div class="settings-readout" aria-live="polite">
+          <span class="readout-label">Applied settings</span>
+          <div id="settings-output" class="settings-output"></div>
+        </div>
+
+        <div id="square-canvas" class="square-canvas grid-mode" aria-label="Nine responsive gradient squares">
+          <div class="gradient-square square-1"><span>01</span></div>
+          <div class="gradient-square square-2"><span>02</span></div>
+          <div class="gradient-square square-3"><span>03</span></div>
+          <div class="gradient-square square-4"><span>04</span></div>
+          <div class="gradient-square square-5"><span>05</span></div>
+          <div class="gradient-square square-6"><span>06</span></div>
+          <div class="gradient-square square-7"><span>07</span></div>
+          <div class="gradient-square square-8"><span>08</span></div>
+          <div class="gradient-square square-9"><span>09</span></div>
+        </div>
+      </section>
+
+      <aside class="controls" aria-labelledby="controls-title">
+        <div class="controls-heading">
+          <p class="eyebrow">Control room</p>
+          <h2 id="controls-title">Tune the rules.</h2>
+        </div>
+
+        <div class="mode-switch" role="group" aria-label="Choose a CSS layout mode">
+          <button class="mode-button is-active" type="button" data-mode="grid" aria-pressed="true">
+            <span class="mode-index">01</span>
+            <span>CSS Grid</span>
+            <span class="mode-arrow" aria-hidden="true">↗</span>
+          </button>
+          <button class="mode-button" type="button" data-mode="flex" aria-pressed="false">
+            <span class="mode-index">02</span>
+            <span>CSS Flexbox</span>
+            <span class="mode-arrow" aria-hidden="true">↗</span>
+          </button>
+        </div>
+
+        <form class="options-panel" id="grid-options" data-panel="grid">
+          <div class="panel-heading">
+            <span class="section-label">Grid options</span>
+            <span class="panel-number">G / 04</span>
+          </div>
+          <label class="control-row">
+            <span>Columns</span>
+            <select name="columns" data-setting="columns">
+              <option value="2">02</option>
+              <option value="3" selected>03</option>
+              <option value="4">04</option>
+            </select>
+          </label>
+          <label class="control-row">
+            <span>Gap <output data-output="gap">16</output> px</span>
+            <input type="range" name="gap" min="8" max="36" value="16" data-setting="gap">
+          </label>
+          <label class="control-row">
+            <span>Alignment</span>
+            <select name="alignment" data-setting="alignment">
+              <option value="stretch" selected>Stretch</option>
+              <option value="center">Center</option>
+              <option value="space-evenly">Space evenly</option>
+            </select>
+          </label>
+        </form>
+
+        <form class="options-panel is-hidden" id="flex-options" data-panel="flex">
+          <div class="panel-heading">
+            <span class="section-label">Flexbox options</span>
+            <span class="panel-number">F / 04</span>
+          </div>
+          <label class="control-row">
+            <span>Direction</span>
+            <select name="direction" data-setting="direction">
+              <option value="row" selected>Row</option>
+              <option value="column">Column</option>
+            </select>
+          </label>
+          <label class="control-row">
+            <span>Gap <output data-output="gap">16</output> px</span>
+            <input type="range" name="gap" min="8" max="36" value="16" data-setting="gap">
+          </label>
+          <label class="control-row">
+            <span>Wrap</span>
+            <select name="wrap" data-setting="wrap">
+              <option value="wrap" selected>Wrap</option>
+              <option value="nowrap">No wrap</option>
+            </select>
+          </label>
+        </form>
+
+        <div class="display-options" data-panel="display">
+          <div class="panel-heading">
+            <span class="section-label">Display options</span>
+            <span class="panel-number">D / 02</span>
+          </div>
+          <label class="control-row">
+            <span>Squares</span>
+            <select name="count" data-setting="count">
+              <option value="1">01</option>
+              <option value="2">02</option>
+              <option value="3">03</option>
+              <option value="4">04</option>
+              <option value="5">05</option>
+              <option value="6">06</option>
+              <option value="7">07</option>
+              <option value="8">08</option>
+              <option value="9" selected>09</option>
+            </select>
+          </label>
+          <label class="control-row">
+            <span>Size</span>
+            <select name="size" data-setting="size">
+              <option value="small">Small</option>
+              <option value="medium" selected>Medium</option>
+              <option value="large">Large</option>
+            </select>
+          </label>
+        </div>
+
+        <button class="reset-button" id="reset-options" type="button">
+          <span aria-hidden="true">↺</span>
+          Reset options
+        </button>
+
+        <section class="code-preview" aria-labelledby="code-title">
+          <div class="code-heading">
+            <div>
+              <span class="section-label">Generated output</span>
+              <h2 id="code-title">Current CSS</h2>
+            </div>
+            <button class="copy-button" id="copy-css" type="button">
+              <span aria-hidden="true">▣</span>
+              <span class="copy-label">Copy CSS</span>
+            </button>
+          </div>
+          <pre><code id="generated-css"></code></pre>
+        </section>
+
+        <div class="tip">
+          <span class="tip-icon" aria-hidden="true">i</span>
+          <p>Every change is reflected in the composition above. Resize the window to see the layout stay responsive.</p>
+        </div>
+
+        <footer class="aside-footer">
+          <span>Built with plain CSS</span>
+          <span>2026</span>
+        </footer>
+      </aside>
+    </main>
+
+    <footer class="site-footer">
+      <span>&copy; 2026. Created by <a href="https://codeboxllc.net" target="_blank" rel="noopener noreferrer">Damion Wilson for CodeBox LLC</a>.</span>
+      <nav aria-label="Social links">
+        <a href="https://www.linkedin.com/in/damion-coder-wilson" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://bsky.app/profile/dwilsoncoder.bsky.social" target="_blank" rel="noopener noreferrer">Bluesky</a>
+        <a href="https://github.com/dwilson-coder/cssflexgrid.git" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </footer>
+  </div>
+</body>
+</html>

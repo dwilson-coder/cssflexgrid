@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>CSS Editor</title>
+  <rect width="64" height="64" rx="12" fill="#1e2623"/>
+  <rect x="10" y="11" width="44" height="42" rx="5" fill="#e8ebe3"/>
+  <path d="M17 21h22M17 29h30M17 37h18" fill="none" stroke="#728437" stroke-linecap="round" stroke-width="4"/>
+  <path d="m39 40 8-8 5 5-8 8-7 2z" fill="#e58b6c"/>
+  <path d="m45 34 3-3 5 5-3 3z" fill="#c9f26d"/>
+</svg>
