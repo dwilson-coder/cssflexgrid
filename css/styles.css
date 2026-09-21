@@ -51,6 +51,10 @@ h1 em { color: #8a9e43; font-style: normal; }
 .code-preview { margin: 10px 0 24px; border: 1px solid var(--line); background: #e8ebe3; }
 .code-heading { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid var(--line); }
 .code-heading h2 { margin: 6px 0 0; font-size: 16px; font-weight: 500; letter-spacing: -.03em; }
+.code-actions { display: flex; align-items: center; gap: 12px; }
+.code-tabs { display: flex; gap: 10px; }
+.code-tab { padding: 0 0 4px; border: 0; border-bottom: 1px solid transparent; background: transparent; color: var(--muted); cursor: pointer; font-family: "DM Mono", monospace; font-size: 10px; }
+.code-tab:hover, .code-tab.is-active { border-color: var(--ink); color: var(--ink); }
 .copy-button { display: inline-flex; align-items: center; gap: 7px; padding: 7px 9px; border: 1px solid var(--ink); background: transparent; cursor: pointer; font-size: 10px; text-transform: uppercase; }
 .copy-button:hover { color: #728437; border-color: #728437; }
 .code-preview pre { height: 600px; max-height: 600px; margin: 0; padding: 16px; overflow: auto; color: #4e5b4c; font-family: "DM Mono", monospace; font-size: 10px; line-height: 1.65; white-space: pre-wrap; }
@@ -67,7 +71,7 @@ h1 em { color: #8a9e43; font-style: normal; }
 .square-canvas.grid-align-stretch .gradient-square { width: 100%; justify-self: stretch; }
 .gradient-square::after { position: absolute; inset: 0; background: linear-gradient(145deg, transparent 35%, rgba(255,255,255,.22)); content: ""; }
 .gradient-square:hover { transform: translateY(-5px) rotate(1deg); }
-.gradient-square span { position: absolute; z-index: 1; right: 11px; bottom: 10px; color: rgba(255,255,255,.85); font-family: "DM Mono", monospace; font-size: 10px; }
+.gradient-square span { position: absolute; z-index: 1; right: 11px; bottom: 10px; color: rgba(255,255,255,.85); font-family: "DM Mono", monospace; font-size: 18px; }
 .square-2 { background: linear-gradient(135deg, #d8ed85, #61ae83 52%, #276c6a); }
 .square-3 { background: linear-gradient(135deg, #f4d67f, #e38366 48%, #a6485b); }
 .square-4 { background: linear-gradient(135deg, #c5d7ef, #788dcc 48%, #5c5686); }

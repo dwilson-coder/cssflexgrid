@@ -185,12 +185,18 @@
               <span class="section-label">Generated output</span>
               <h2 id="code-title">Current CSS</h2>
             </div>
-            <button class="copy-button" id="copy-css" type="button">
-              <span aria-hidden="true">▣</span>
-              <span class="copy-label">Copy CSS</span>
-            </button>
+            <div class="code-actions">
+              <div class="code-tabs" role="tablist" aria-label="Choose generated code">
+                <button class="code-tab is-active" type="button" role="tab" aria-selected="true" data-code-tab="css">CSS</button>
+                <button class="code-tab" type="button" role="tab" aria-selected="false" data-code-tab="html">HTML</button>
+              </div>
+              <button class="copy-button" id="copy-code" type="button">
+                <span aria-hidden="true">▣</span>
+                <span class="copy-label">Copy CSS</span>
+              </button>
+            </div>
           </div>
-          <pre><code id="generated-css"></code></pre>
+          <pre><code id="generated-code"></code></pre>
         </section>
 
         <div class="tip">

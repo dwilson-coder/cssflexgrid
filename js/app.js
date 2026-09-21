@@ -2,9 +2,10 @@ const canvas = document.querySelector('#square-canvas');
 const modeTitle = document.querySelector('#mode-title');
 const itemCount = document.querySelector('#item-count');
 const settingsOutput = document.querySelector('#settings-output');
-const generatedCss = document.querySelector('#generated-css');
-const copyButton = document.querySelector('#copy-css');
+const generatedCode = document.querySelector('#generated-code');
+const copyButton = document.querySelector('#copy-code');
 const copyLabel = copyButton.querySelector('.copy-label');
+const codeTabs = document.querySelectorAll('.code-tab');
 const modeButtons = document.querySelectorAll('.mode-button');
 const optionPanels = document.querySelectorAll('.options-panel');
 const displayPanel = document.querySelector('.display-options');
@@ -28,6 +29,7 @@ const defaultSettings = {
 };
 
 const settings = structuredClone(defaultSettings);
+let activeCodeTab = 'css';
 
 const prettyValues = {
   alignment: { stretch: 'stretch', center: 'center', 'space-evenly': 'space evenly' },
@@ -62,6 +64,16 @@ function generatedCssText() {
 
   const isColumn = modeSettings.direction === 'column';
   return `.square-canvas {\n  display: flex;\n  flex-direction: ${modeSettings.direction};\n  flex-wrap: ${modeSettings.wrap};\n  gap: ${modeSettings.gap}px;\n}\n\n.gradient-square {\n  flex: ${isColumn ? '0 0 auto' : `0 1 calc(${rowBases[displaySettings.size]} - var(--gap))`};\n  width: ${isColumn ? sizeWidths[displaySettings.size] : 'auto'};\n  aspect-ratio: 1;\n}${hiddenRule}`;
+}
+
+function generatedHtmlText() {
+  return `<div class="square-canvas ${activeMode()}-mode">
+  ${Array.from({ length: Number(settings.display.count) }, (_, index) => `<div class="gradient-square square-${index + 1}"><span>${String(index + 1).padStart(2, '0')}</span></div>`).join('\n  ')}
+</div>`;
+}
+
+function activeCodeText() {
+  return activeCodeTab === 'html' ? generatedHtmlText() : generatedCssText();
 }
 
 function syncControls() {
@@ -126,7 +138,7 @@ function applySettings() {
 
   modeTitle.textContent = mode === 'grid' ? 'CSS Grid' : 'CSS Flexbox';
   renderReadout();
-  generatedCss.textContent = generatedCssText();
+  generatedCode.textContent = activeCodeText();
 }
 
 function bindPanel(panel) {
@@ -170,20 +182,34 @@ resetButton.addEventListener('click', () => {
   applySettings();
 });
 
+codeTabs.forEach((tab) => {
+  tab.addEventListener('click', () => {
+    activeCodeTab = tab.dataset.codeTab;
+    codeTabs.forEach((item) => {
+      const isActive = item === tab;
+      item.classList.toggle('is-active', isActive);
+      item.setAttribute('aria-selected', isActive);
+    });
+    document.querySelector('#code-title').textContent = `Current ${activeCodeTab.toUpperCase()}`;
+    copyLabel.textContent = `Copy ${activeCodeTab.toUpperCase()}`;
+    generatedCode.textContent = activeCodeText();
+  });
+});
+
 copyButton.addEventListener('click', async () => {
-  const css = generatedCss.textContent;
+  const code = generatedCode.textContent;
   try {
-    await navigator.clipboard.writeText(css);
+    await navigator.clipboard.writeText(code);
   } catch {
     const textArea = document.createElement('textarea');
-    textArea.value = css;
+    textArea.value = code;
     document.body.appendChild(textArea);
     textArea.select();
     document.execCommand('copy');
     textArea.remove();
   }
   copyLabel.textContent = 'Copied';
-  setTimeout(() => { copyLabel.textContent = 'Copy CSS'; }, 1400);
+  setTimeout(() => { copyLabel.textContent = `Copy ${activeCodeTab.toUpperCase()}`; }, 1400);
 });
 
 optionPanels.forEach(bindPanel);
